@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-feb" database="Sqlite" >
+	<schema name="Default" >
+		<table name="TblEXPERIENCIA" >
+			<column name="NOME DA EMPRESA" type="TEXT" jt="-1" />
+			<column name="DATA INICIAL" type="TEXT" jt="-1" />
+			<column name="DATA FINAL" type="TEXT" jt="-1" />
+			<column name="CARGO" type="TEXT" jt="-1" />
+			<column name="DESCRICAO" type="TEXT" jt="-1" />
+			<column name="ID_EXPERIENCIA" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_USER" type="INTEGER" jt="4" />
+			<index name="pk_TblEXPERIENCIA" unique="PRIMARY_KEY" >
+				<column name="ID_EXPERIENCIA" />
+			</index>
+			<fk name="fk_TblEXPERIENCIA" to_schema="Default" to_table="TblUSER" >
+				<fk_column name="ID_USER" pk="ID_USER" />
+			</fk>
+		</table>
+		<table name="TblFORMACAO" >
+			<column name="CURSO" type="TEXT" jt="-1" />
+			<column name="DATA INICIAL" type="TEXT" jt="-1" />
+			<column name="DATA FINAL" type="TEXT" jt="-1" />
+			<column name="DESCRICAO" type="TEXT" jt="-1" />
+			<column name="ID_FORMACAO" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_USER" type="INTEGER" jt="4" />
+			<index name="pk_TblFORMACAO" unique="PRIMARY_KEY" >
+				<column name="ID_FORMACAO" />
+			</index>
+			<fk name="fk_TblFORMACAO" to_schema="Default" to_table="TblUSER" >
+				<fk_column name="ID_USER" pk="ID_USER" />
+			</fk>
+		</table>
+		<table name="TblHABILIDADE" >
+			<column name="TIPOS DE HABILIDADE" type="TEXT" jt="-1" />
+			<column name="NIVEIS" type="TEXT" jt="-1" />
+			<column name="ID_HABILIDADE" prior="IDHABILIDADE" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_USER" type="INTEGER" jt="4" />
+			<index name="pk_TblHABILIDADE" unique="PRIMARY_KEY" >
+				<column name="ID_HABILIDADE" />
+			</index>
+			<fk name="fk_TblHABILIDADE" to_schema="Default" to_table="TblUSER" >
+				<fk_column name="ID_USER" pk="ID_USER" />
+			</fk>
+		</table>
+		<table name="TblPERSONALIDADE" >
+			<column name="TIPOS DE PERSONALIDADES" type="TEXT" jt="-1" />
+			<column name="NIVEIS" type="TEXT" jt="-1" />
+			<column name="ID_PERSONALIDADE" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_USER" type="INTEGER" jt="4" />
+			<index name="pk_TblPERSONALIDADE" unique="PRIMARY_KEY" >
+				<column name="ID_PERSONALIDADE" />
+			</index>
+			<fk name="fk_TblPERSONALIDADE" to_schema="Default" to_table="TblUSER" >
+				<fk_column name="ID_USER" pk="ID_USER" />
+			</fk>
+		</table>
+		<table name="TblREALIZACOES" >
+			<column name="NOME DA REALIZACAO" type="TEXT" jt="-1" />
+			<column name="DATA DA REALIZACAO" type="TEXT" jt="-1" />
+			<column name="DESCRICAO" type="TEXT" jt="-1" />
+			<column name="ID_REALIZACOES" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_USER" type="INTEGER" jt="4" />
+			<index name="pk_TblREALIZACOES" unique="PRIMARY_KEY" >
+				<column name="ID_REALIZACOES" />
+			</index>
+			<fk name="fk_TblREALIZACOES" to_schema="Default" to_table="TblUSER" >
+				<fk_column name="ID_USER" pk="ID_USER" />
+			</fk>
+		</table>
+		<table name="TblUSER" >
+			<column name="NOME" type="TEXT" jt="-1" />
+			<column name="NUMERO DE TELEFONE" type="TEXT" jt="-1" />
+			<column name="EMAIL" type="TEXT" jt="-1" />
+			<column name="ID_USER" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ENDERECO" type="TEXT" jt="-1" />
+			<column name="CARGO" type="TEXT" jt="-1" />
+			<index name="pk_TblUSER" unique="PRIMARY_KEY" >
+				<column name="ID_USER" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="/Users/freddymesterharari/Documents/GitHub/Tutorial_M2_Freddy_Harari/SEMANA_02/02_AUT_EST_ENTREGA/Modelo fisico.db" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-2393" show_relation="columns" >
+		<entity schema="Default" name="TblEXPERIENCIA" color="C1D8EE" x="512" y="48" />
+		<entity schema="Default" name="TblFORMACAO" color="C1D8EE" x="48" y="368" />
+		<entity schema="Default" name="TblHABILIDADE" color="C1D8EE" x="80" y="64" />
+		<entity schema="Default" name="TblPERSONALIDADE" color="C1D8EE" x="352" y="528" />
+		<entity schema="Default" name="TblREALIZACOES" color="C1D8EE" x="608" y="352" />
+		<entity schema="Default" name="TblUSER" color="C1D8EE" x="304" y="288" />
+	</layout>
+</project>
