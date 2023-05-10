@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const sqlite3 = require('sqlite3').verbose();
-const DBPATH = '../data/Ponderada_s2.dbs';
+const DBPATH = '../data/PonderadaS2.db';
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 3005;
 const app = express();
 
 /* Colocar toda a parte estática no frontend */
@@ -21,7 +21,7 @@ app.get('/usuarios', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	var sql = 'SELECT * FROM TblUSER ORDER BY NOME COLLATE NOCASE';
+	var sql = 'SELECT * FROM TblREALIZACOES ORDER BY TIPO_DE_REALIZACAO';
 		db.all(sql, [],  (err, rows ) => {
 			if (err) {
 				throw err;
@@ -36,7 +36,7 @@ app.post('/insereUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	sql = "INSERT INTO TblUSER (NOME, EMAIL, TELEFONE) VALUES ('" + req.body.nome + "', '" + req.body.email + "', " + req.body.telefone + ")";
+	sql = `INSERT INTO TblREALIZACOES (TIPO_DE_REALIZACAO, DATA, DESCRICAO) VALUES ("${req.body.TIPO_DE_REALIZACAO}", "${req.body.DATA}", '${req.body.DESCRICAO}')`;
 	console.log(sql);
 	db.run(sql, [],  err => {
 		if (err) {
@@ -52,7 +52,7 @@ app.post('/insereUsuario', urlencodedParser, (req, res) => {
 app.get('/atualizaUsuario', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "SELECT * FROM usuario WHERE userId="+ req.query.userId;
+	sql = "SELECT * FROM TblREALIZACOES WHERE ID_REALIZACAO="+ req.query.ID_REALIZACOES;
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.all(sql, [],  (err, rows ) => {
@@ -68,7 +68,7 @@ app.get('/atualizaUsuario', (req, res) => {
 app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "UPDATE TblUSER SET NOME='" + req.body.nome + "', EMAIL = '" + req.body.email + "' , NUMERO DE TELEFONE='" + req.body.telefone + "' WHERE ID_USER='" + req.body.userId + "'";
+	sql = "UPDATE TblREALIZACOES SET TIPO_DE_REALIZACAO='" + req.body.TIPO_DE_REALIZACAO + "', DATA = '" + req.body.DATA + "' , NUMERO DE DESCRICAO='" + req.body.DESCRICAO + "' WHERE ID_USER='" + req.body.ID_REALIZACOES + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.run(sql, [],  err => {
@@ -85,7 +85,7 @@ app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 app.get('/removeUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "DELETE FROM TblUSER WHERE ID_USER='" + req.query.userId + "'";
+	sql = "DELETE FROM TblREALIZACOES WHERE ID_REALIZACOES='" + req.query.ID_REALIZACOES + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.run(sql, [],  err => {
