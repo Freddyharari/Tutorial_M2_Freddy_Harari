@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currículo - Freddy Mester Harari</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #000080;
+            background-color:#000080 ;
+            padding: 0;
+            margin: 0;
+        }
+        .header {
+            background-color: #000080;
+            padding: 20px;
+            text-align: center;
+            color: #fffdd0;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .section {
+            background-color: #fffdd0;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .section-title {
+            color: #000080;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-weight: 500;
+        }
+        p, li {
+            font-weight: 300;
+        }
+        .nav {
+            background-color: #fffdd0;
+            position: sticky;
+            top: 0;
+            padding: 10px;
+            text-align: right;
+        }
+        .nav a {
+            color: #000080;
+  
+            margin-right: 20px;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            color: #fffdd0;
+            text-decoration: underline;
+        }
+        .highlighted {
+            background-color: #fffdd0;
+        }
+        .progress-bar {
+            background-color: #eeeeec;
+            border-radius: 2px;
+            height: 20px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .progress {
+            background-color: #000080;
+            border-radius: 2px;
+            height: 100%;
+            width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Freddy Mester Harari</h1>
+        <p>Estudante de Sistema de Informação - INTELI</p>
+    </div>
+    <div class="nav">
+        <a href="#about">Sobre Mim</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#education">Educação</a>
+        <a href="#languages">Idiomas</a>
+        <a href="#contact">Infos de Contato</a>
+        <a href="#extracurricular">Atividades Extracurrículares</a>
+    </div>
+    <div class="section" id="about">
+        <div class="section-title">Sobre Mim</div>
+        <p>
+            Tenho 18 anos e sou estudante de Sistemas de Informação no INTELI desde janeiro de 2023. Me considero uma pessoa muito extrovertido, e muito comunicativo
+        </p>
+    </div>
+    <div class="section" id="skills">
+        <div class="section-title">Habilidades</div>
+        <div>
+            <p>Comunicação efetiva</p>
+            <div class="progress-bar" data-percentage="90">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div>
+            <p>Criatividade</p>
+            <div class="progress-bar" data-percentage="80">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div>
+            <p>Liderança</p>
+            <div class="progress-bar" data-percentage="75">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div>
+            <p>Pensamento Crítico</p>
+            <div class="progress-bar" data-percentage="80">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div>
+            <p>Negociações</p>
+            <div class="progress-bar" data-percentage="90">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div>
+            <p>Resolução de problemas</p>
+            <div class="progress-bar" data-percentage="75">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="education">
+        <div class="section-title">Educação</div>
+        <p>Colégio IAVNE - Ensino Médio completo</p>
+        <p>Ensino Superior</p>
+        <p>INTELI - Estudante de Sistema de Informação</p>
+        <p><strong>Início:</strong> Janeiro de 2023 </p>
+        <p><strong>Fim:</strong> Em processo... </p>
+    </div>
+    <div class="section" id="languages">
+        <div class="section-title">Idiomas</div>
+        <p>Português - Nativo</p>
+        <p>Inglês - Fluente</p>
+        <p>Hebraico - Fluente</p>
+        <p>Françes - Aprendendo</p>
+    </div>
+    <div class="section" id="contact">
+        <div class="section-title">Infos de Contato</div>
+        <p>Gmail: freddy.harari@sou.inteli.edu.br</p>
+        <p>Numero de telefone: +55 (11) 99406-0963</p>
+    </div>
+    <div class="section" id="extracurricular">
+        <div class="section-title">Atividades Extracurriculares</div>
+        <p>Diretor de reformas em movimento juveníl</p>
+        <p>Diretor administrativo em movimento juveníl</p>
+        <p>Ex diretor de eventos em movimento juveníl</p>
+        <p>Monitor em movimento juveníl</p>
+    </div>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.nav a').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        var section = $(target);
+        $('html, body').animate({scrollTop: section.offset().top}, 1000);
+
+        section.addClass('highlighted');
+        setTimeout(function() {
+            section.removeClass('highlighted');
+        }, 1890);
+    });
+
+    $('.progress-bar').each(function() {
+        var percentage = $(this).data('percentage');
+        $(this).find('.progress').animate({width: percentage + '%'}, 2000);
+    });
+});
+</script>
+</html>
