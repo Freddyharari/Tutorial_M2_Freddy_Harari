@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Currículo - Freddy Mester Harari</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -78,9 +78,9 @@
 </head>
 <body>
     <div class="header">
-        <button onclick="trazerNome()">trazer_nome</button>
         <h1 id="nameID"></h1>
-        <p></p>
+        <p>Freddy Mester Harari </p>
+        <p>Estudante de Sistema de Informação - INTELI</p>
     </div>
     <div class="nav">
         <a href="#about">Sobre Mim</a>
@@ -89,6 +89,7 @@
         <a href="#languages">Idiomas</a>
         <a href="#contact">Infos de Contato</a>
         <a href="#extracurricular">Atividades Extracurrículares</a>
+        <a href="#diretorio-git">Diretorio GitHub</a>
     </div>
     <div class="section" id="about">
         <div class="section-title">Sobre Mim</div>
@@ -162,11 +163,38 @@
         <p>Ex diretor de eventos em movimento juveníl</p>
         <p>Monitor em movimento juveníl</p>
     </div>
-    
+    <div class="section" id="diretorio-git">
+        <h2>Diretorio GitHub</h2>
+        <ul>
+          <li><strong>Nome:</strong> Freddy Harari</li>
+          <li><a href="https://github.com/freddyharari" target="_blank">https://github.com/Intelihub/Tutorial_M2</a></li>
+        </ul>
+    </div>
 </body>
-<script src="script.js"></script>
+<scfipt src="script.js"></scfipt>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    function trazerNome() {
+    var xhr = new XMLHttpRequest();
+    var TblUSER;
+    var nomesUsuarios;
+  
+    xhr.open('GET', 'http://127.0.0.1:3005/usuarios', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          TblUSER = JSON.parse(xhr.responseText);
+          nomesUsuarios = TblUSER.map(TblUSER => TblUSER.NOME);
+          document.getElementById('nameID').textContent = nomesUsuarios;
+          console.log(xhr)
+          console.log(TblUSER)
+          console.log(nomesUsuarios)
+        }
+      }
+    };
+    xhr.send();
+  }
+  
 $(document).ready(function() {
     $('.nav a').on('click', function(e) {
         e.preventDefault();
